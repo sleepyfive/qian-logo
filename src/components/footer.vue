@@ -4,11 +4,13 @@
             <span>感谢使用</span>
         </li>
         <li>
-            <a href="#">github</a>
+            <a href="https://github.com/sleepyfive/qian-logo">github</a>
         </li>
-        <!-- <li img><img src="../assets/five.png" alt="five"></li> -->
         <li>
-            <a href="#">@sleepyfive</a>
+            <span title="1349945922@qq.com">email</span>
+        </li>
+        <li>
+            <a href="https://www.yuque.com/gaoxiaofeng-hyqig">@sleepyfive</a>
         </li>
     </ul>
 </template>
