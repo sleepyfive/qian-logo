@@ -78,7 +78,6 @@ body{
   .op{
     height: 70%;
     display: flex;
-    // background: green; 
 
     .itdc-wrapper{
       width: 50%;

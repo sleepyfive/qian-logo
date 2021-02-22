@@ -18,5 +18,6 @@ export default {
         margin-left: -50px;
         top: 50%;
         margin-top: -25px;
+        border-radius: 45px 45px 5px 5px;
     }
 </style>

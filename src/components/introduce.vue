@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     .introduce-wrapper{
         background: #f90;
         height: 20vw;
@@ -83,7 +83,6 @@ export default {
 		margin-left: -10vw;
 		top: 50%;
 		margin-top: -10vw;
-		// border-radius: 10%;
         padding: 1vw;
         box-sizing: border-box;
         color:black;
