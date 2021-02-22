@@ -83,7 +83,7 @@ export default {
 		margin-left: -10vw;
 		top: 50%;
 		margin-top: -10vw;
-		border-radius: 10%;
+		// border-radius: 10%;
         padding: 1vw;
         box-sizing: border-box;
         color:black;

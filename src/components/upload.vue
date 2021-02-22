@@ -80,6 +80,7 @@ function removeImg(showImg:Ref<boolean>){
 	return remove;
 }
 
+//想用来解决，把所有字都删除以后，整个文字框就不太容易找到的情况，但是现在没用
 function resolveTextLost(){
 	const leftText = ref(`欠`);
 	const midText = ref(`122`);
@@ -169,7 +170,7 @@ export default {
         .img-wrapper{
             width: 20vw;
             height: 20vw;
-            border-radius: 1.5rem;
+            // border-radius: 1.5rem;
             overflow: hidden;
             position: relative;
 
