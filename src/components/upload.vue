@@ -132,7 +132,17 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+
+    .upload-wrapper{
+        width: 20vw;
+        height: 20vw;
+        position: relative;
+        left: 50%;
+        margin-left: -10vw;
+        top: 50%;
+        margin-top: -10vw;
+    }
 
     .input-box{
         background: white;;

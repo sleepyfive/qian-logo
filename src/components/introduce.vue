@@ -76,12 +76,19 @@ export default {
 <style lang="less">
     .introduce-wrapper{
         background: #f90;
-        height: 100%;
-        border-radius: 1vw;
+        height: 20vw;
+		width: 20vw;
+		position: relative;
+		left: 50%;
+		margin-left: -10vw;
+		top: 50%;
+		margin-top: -10vw;
+		border-radius: 10%;
         padding: 1vw;
         box-sizing: border-box;
         color:black;
         font-size: 1vw;
+		overflow: auto;
 
         .title{
             font-size: 2vw;
