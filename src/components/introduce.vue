@@ -1,15 +1,15 @@
 <template>
-    <div class="introduce-wrapper" @click="setClick">
-        <p class="title">
+    <section class="introduce-wrapper" @click="setClick">
+        <header class="title">
             操作介绍
-        </p>
-        <p v-if="!click" class="continue">
+        </header>
+        <article v-if="!click" class="continue">
             点击开始...
-        </p>
-        <p v-else class="content-wrapper">
-            <span class="content" v-html="curData"></span>
-        </p>
-    </div>
+        </article>
+        <article v-else class="content-wrapper">
+            <p class="content" v-html="curData"></p>
+        </article>
+    </section>
 </template>
 
 <script lang="ts">
@@ -23,7 +23,6 @@ function continueOp(op:()=>void){
 			click.value = true;
 			op();    
 		}
-        
 	}
 	return{
 		click,
@@ -33,14 +32,13 @@ function continueOp(op:()=>void){
 
 function show(){
 	const allData = 
-        `点击右边即可上传图片,`+
-        `将鼠标移动到图片上面就会出现删除和下载图标,`+
-        `<span>"欠"</span>、<span>"122"</span>、<span>"亿"</span>三个字均可重新编辑,`+
+        `点击右侧图标即可上传图片,`+
+        `将鼠标移动到图片上会出现删除和下载图标，`+
+        `<em>欠</em>、<em>122</em>、<em>亿</em>三处均可重新编辑,`+
         `为了实际的显示效果，建议不要添加过多内容`;
 	const interval = 80;
 	const curData = ref(``);
 	const len = allData.length;
-	let cur = 0;
 	const audio = document.createElement(`audio`);
 	audio.src = key;
 	let cnt = 0;
@@ -73,7 +71,10 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+
+<style lang="less">
+	//加了scoped，js动态添加进去的em就不生效了
+
     .introduce-wrapper{
         background: #f90;
         height: 20vw;
@@ -86,7 +87,7 @@ export default {
         padding: 1vw;
         box-sizing: border-box;
         color:black;
-        font-size: 1vw;
+        font-size: 10px;
 		overflow: auto;
 
         .title{
@@ -94,16 +95,21 @@ export default {
             margin-bottom: 1vw;
         }
 
+		.continue{
+			font-size: 20px;
+		}
+
         .content-wrapper{
             .content{
-                width: 80%;
                 text-align: left;
                 line-height: calc(100% + 10px);
-                
-                span{
-                    font-style: italic;
-                    font-weight: 1000;
-                }
+                font-size: 15px;
+
+				
+				em{
+    				font-style: italic;
+    				font-weight: 1000;
+				}
             }
         }
         
