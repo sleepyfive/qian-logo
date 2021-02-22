@@ -31,105 +31,104 @@
 </template>
 
 <script lang="ts">
-import { ref,onMounted, Ref } from "vue";
+import { ref,onMounted, Ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import Export from './export.vue';
 
-
 function upload(){
-    const input = ref(null);
-    const img = ref(null);
-    const showImg = ref(false);
+	const input = ref(null);
+	const img = ref(null);
+	const showImg = ref(false);
 
-    onMounted(()=>{
-        (input.value as any as HTMLInputElement).addEventListener('click',function(){
-            const realInput = document.createElement('input');
-            realInput.type = 'file';
-            realInput.addEventListener('change',function(){
-                if(this.files&&this.files[0]){
-                    (img.value as any as HTMLImageElement).src = URL.createObjectURL(this.files![0]);
-                    showImg.value = true;
-                }else{
-                    ElMessage.error('选择失败！');
-                }
-            });
-            const e = new MouseEvent('click');
-            realInput.dispatchEvent(e);
-        })
-    });
-    return {
-        input,
-        img,
-        showImg
-    };
+	onMounted(()=>{
+		(input.value as any as HTMLInputElement).addEventListener(`click`,function(){
+			const realInput = document.createElement(`input`);
+			realInput.type = `file`;
+			realInput.addEventListener(`change`,function(){
+				if(this.files&&this.files[0]){
+					(img.value as any as HTMLImageElement).src = URL.createObjectURL(this.files![0]);
+					showImg.value = true;
+				}else{
+					ElMessage.error(`选择失败！`);
+				}
+			});
+			const e = new MouseEvent(`click`);
+			realInput.dispatchEvent(e);
+		})
+	});
+	return {
+		input,
+		img,
+		showImg
+	};
 }
 
 function removeImg(showImg:Ref<boolean>){
-    const remove = ref(null);
+	const remove = ref(null);
 
-    onMounted(()=>{
-        (remove.value as any as HTMLElement).addEventListener('click',function(){
-        ElMessageBox.confirm('确认删除吗？','提示',{
-            showCancelButton:true,
-            cancelButtonText:'取消',
-            confirmButtonText: '确定',
-        }).then(()=>{
-            showImg.value = false;
-        }).catch(()=>{});
-        })
-    });
-    return remove;
+	onMounted(()=>{
+		(remove.value as any as HTMLElement).addEventListener(`click`,function(){
+			ElMessageBox.confirm(`确认删除吗？`,`提示`,{
+				showCancelButton:true,
+				cancelButtonText:`取消`,
+				confirmButtonText: `确定`,
+			}).then(()=>{
+				showImg.value = false;
+			}).catch(()=>{});
+		})
+	});
+	return remove;
 }
 
 function resolveTextLost(){
-    const leftText = ref('欠');
-    const midText = ref('122');
-    const rightText = ref('亿');
+	const leftText = ref(`欠`);
+	const midText = ref(`122`);
+	const rightText = ref(`亿`);
 
-    const left = ref(null);
+	const left = ref(null);
 
-    onMounted(()=>{
-        (left.value as any as HTMLSpanElement).addEventListener('input',function(e){
-            if(!this.textContent){
+	onMounted(()=>{
+		(left.value as any as HTMLSpanElement).addEventListener(`input`,function(e){
+			if(!this.textContent){
 
-            }
-        })
-    })
+			}
+		})
+	})
 
-    return{
-        leftText,
-        midText,
-        rightText,
-        left
-    };
+	return{
+		leftText,
+		midText,
+		rightText,
+		left
+	};
 }
 
 export default {
-    name:'upload',
-    components:{
-        Export
-    },
-    setup(){
-        const {input,img,showImg} = upload();
-        const remove = removeImg(showImg);
-        const {
-            leftText,
-            midText,
-            rightText,
-            left
-        } = resolveTextLost();
+	name:`upload`,
+	components:{
+		Export
+	},
+	setup(){
+		const {input,img,showImg} = upload();
+		const remove = removeImg(showImg);
+		const {
+			leftText,
+			midText,
+			rightText,
+			left
+		} = resolveTextLost();
 
-        return {
-            input,
-            img,
-            showImg,
-            remove,
-            leftText,
-            midText,
-            rightText,
-            left
-        }
-    }
+		return {
+			input,
+			img,
+			showImg,
+			remove,
+			leftText,
+			midText,
+			rightText,
+			left
+		}
+	}
 }
 </script>
 
@@ -225,7 +224,6 @@ export default {
                     margin-left: -3vw;
                     margin-top: -1.25vw;
 
-
                         .remove-wrapper{
                             display: block;
                             height: 2.5vw;
@@ -254,9 +252,8 @@ export default {
                             height: 3vw;
                            
                         }
+                    }
                 }
-                }
-               
                 
             }
         }

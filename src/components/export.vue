@@ -6,36 +6,35 @@
 </template>
 
 <script lang="ts">
-import dom2img from "dom-to-image";
-import { ref } from "vue";
+import dom2img from 'dom-to-image';
+import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
 
 function exportIMG(){
 
-    const el = document.getElementById('img-fn-wrapper')!
-    el.style.display = 'none';
-    dom2img.toPng(document.getElementById('img-wrapper')!)
-    .then(function (url) {
-        const a = document.createElement('a');
-        a.download = `${Date.now()}-five-xxx.png`;
-        a.href = url;
-        const event = new MouseEvent('click');
-        a.dispatchEvent(event);
-        el.style.display = '';   
-    });
+	const el = document.getElementById(`img-fn-wrapper`)!
+	el.style.display = `none`;
+	dom2img.toPng(document.getElementById(`img-wrapper`)!)
+		.then(function (url) {
+			const a = document.createElement(`a`);
+			a.download = `${Date.now()}-five-xxx.png`;
+			a.href = url;
+			const event = new MouseEvent(`click`);
+			a.dispatchEvent(event);
+			el.style.display = ``;   
+		});
 
-    return {
-    };
+	return {
+	};
 }
 
-
 export default {
-    setup(){
+	setup(){
 
-        return{
-            exportIMG,
-        }
-    }
+		return{
+			exportIMG,
+		}
+	}
 }
 </script>
 
