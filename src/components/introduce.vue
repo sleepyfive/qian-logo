@@ -1,5 +1,5 @@
 <template>
-    <section class="introduce-wrapper" @click="setClick">
+    <section class="introduce-wrapper" @click="setClick" ref="wrapper">
         <header class="title">
             操作介绍
         </header>
@@ -42,6 +42,7 @@ function show(){
 	const audio = document.createElement(`audio`);
 	audio.src = key;
 	let cnt = 0;
+	const wrapper = ref(null);
 	const showData = function(n:number){
 		if(n>=len) return;
 		cnt+=2;
@@ -50,22 +51,30 @@ function show(){
 			cnt = 0;
 		}
 		curData.value += allData[n]+(allData[n+1]||``);
+		//如果有滚动条，把它拖到最下面
+		(wrapper.value as any as HTMLParagraphElement).scrollBy({
+			top:100000,
+			behavior:'smooth'
+		});
+		
 		setTimeout(showData.bind(null,n+2),interval);
 	}
 	return{
 		curData,
-		showData
+		showData,
+		wrapper
 	}
 }
 
 export default {
 	setup(){
-		const {curData,showData} = show();
+		const {curData,showData,wrapper} = show();
 		const {click,setClick} = continueOp(showData.bind(null,0));
 		return{
 			curData,
 			click,
-			setClick
+			setClick,
+			wrapper
 		}
 	}
 }
