@@ -46,6 +46,11 @@ function upload(){
 			realInput.type = `file`;
 			realInput.addEventListener(`change`,function(){
 				if(this.files&&this.files[0]){
+                    //销毁原来的内存数据
+                    const oldURL = (img.value as any as HTMLImageElement).src;
+                    if(oldURL!=='#'&&oldURL!==''){
+                        URL.revokeObjectURL(oldURL);
+                    }
 					(img.value as any as HTMLImageElement).src = URL.createObjectURL(this.files![0]);
 					showImg.value = true;
 				}else{
