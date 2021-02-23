@@ -71,7 +71,6 @@ export default {
 }
 </script>
 
-
 <style lang="less">
 	//加了scoped，js动态添加进去的em就不生效了
 
@@ -104,7 +103,6 @@ export default {
                 text-align: left;
                 line-height: calc(100% + 10px);
                 font-size: 15px;
-
 				
 				em{
     				font-style: italic;
