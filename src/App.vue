@@ -1,24 +1,23 @@
 <template>
-  <el-container>
-    <el-header>
-      <Title />
-    </el-header>
-    <el-container>
-      <el-main class="main">
-        <el-row>
-          <el-col :span="9" :offset="3">
-            <Itdc />
-          </el-col>
-          <el-col :span="9" :offset="3">
-            <Upload />
-          </el-col>
-        </el-row>
-      </el-main>
-    </el-container>
-    <el-footer class="footer">
-      <GFooter />
-    </el-footer>
-  </el-container>
+  <header class="header">
+    <Title />
+  </header>
+  <main class="main">
+    <section class="op">
+      <article class="itdc-wrapper">
+        <Itdc/>
+      </article>
+      <article class="upload-wrapper">
+        <Upload />
+      </article>
+    </section>
+    <section class="choice">
+      <Choice />
+    </section>
+  </main>
+  <footer class="footer">
+    <GFooter />
+  </footer>
 </template>
 
 <script lang="ts">
@@ -28,6 +27,7 @@ import Itdc from './components/introduce.vue';
 import Upload from './components/upload.vue';
 import Export from './components/export.vue';
 import GFooter from './components/footer.vue';
+import Choice from './components/choice.vue';
 
 export default defineComponent({
   name: 'App',
@@ -37,16 +37,17 @@ export default defineComponent({
     Title,
     Itdc,
     GFooter,
+    Choice
   }
 })
 </script>
 
-<style>
+<style lang="less">
 
 body{
   background: black;
+  
 }
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -54,16 +55,50 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
+  width: 100vw;
+  height: 100vh;
+  // min-width: 740px;
+  // min-height: 300px;
+  // max-width: 1600px;
+}
+
+.header{
+  height: 10%;
+  padding-left: 5%;
+  // background: red;
 }
 
 .main{
-  /* max-width: 800px; */
+  height: 80%;
+  padding: 5%;
+  box-sizing: border-box;
+  // border: 1px white solid;
+  // background: white;
+
+  .op{
+    height: 70%;
+    display: flex;
+
+    .itdc-wrapper{
+      width: 50%;
+    }
+
+    .upload-wrapper{
+      width: 50%;
+    }
+  }
+
+  .choice{
+    height: 30%;
+    overflow: hidden;
+  }
 }
 
 .footer{
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  // background: yellow;
+  height: 10%;
 }
+
+
+
 </style>

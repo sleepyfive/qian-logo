@@ -1,7 +1,7 @@
-import { Directive } from "vue";
+import { Directive } from 'vue';
 
 const model:Directive = function(el:HTMLSpanElement,binding){
-    el.textContent = binding.arg||'';
+	el.textContent = binding.arg||``;
     
 }
 
