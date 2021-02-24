@@ -1,21 +1,51 @@
 <template>
-    <div class="upload-wrapper">
+    <div class="upload-wrapper"
+        :style="{
+            width: style.width.num+style.width.unit,
+			height: style.height.num+style.height.unit,
+			marginLeft: -style.width.num/2+style.width.unit,
+			marginTop: -style.height.num/2+style.height.unit
+        }">
         <div v-show="!showImg" class="input-wrapper" >
-            <div ref="input" class="input-box">
+            <div ref="input" class="input-box" :style="{
+                width: style.width.num+style.width.unit,
+			    height: style.height.num+style.height.unit
+            }">
                 <svg t="1613711906334" class="plus-icon icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2827" width="200" height="200"><path d="M819.2 477.87008H546.12992V204.8h-68.25984v273.07008H204.8v68.27008h273.07008V819.2h68.25984V546.14016H819.2z" p-id="2828" fill="#707070"></path></svg>
             </div>
         </div>
         <div v-show="showImg" class="content-wrapper">
-            <div class="img-wrapper" id="img-wrapper">
+            <div class="img-wrapper" id="img-wrapper" :style="{
+                width: style.width.num+style.width.unit,
+			    height: style.height.num+style.height.unit,
+            }">
                 <img src="#" alt="" ref="img" class="img-show">
-             <div class="img-background"></div>
-             <span class="img-words">
+             <div class="img-background"
+                :style="{
+			        height: style.height.num/4+style.height.unit,
+            }">
+                 <span class="img-words" :style="{
+                     lineHeight: style.height.num/4+style.height.unit,
+                     fontSize: style.height.num/8+style.height.unit
+                 }">
                  <span class="img-words-left" contenteditable="true" ref="left">欠</span>
-                <span class="img-words-mid" contenteditable="true">&nbsp;122&nbsp;</span>
+                <span class="img-words-mid" contenteditable="true" :style="{
+                    fontSize: style.height.num/40*7+style.height.unit
+                }">&nbsp;122&nbsp;</span>
                 <span class="img-words-right" contenteditable="true">亿</span>
-             </span>
-            <span class="img-fn-wrapper" id="img-fn-wrapper">
-                <div class="img-fn">
+                </span>
+             </div>
+             
+            <span class="img-fn-wrapper" id="img-fn-wrapper"
+            :style="{
+			    height: style.height.num/5+style.height.unit,
+            }">
+                <div class="img-fn" :style="{
+                    width: style.width.num*3/10+style.width.unit,
+                    height: style.height.num/8+style.height.unit,
+                    marginLeft: -style.width.num*3/20+style.width.unit,
+                    marginTop: -style.height.num/16+style.height.unit
+                }">
                     <span class="remove-wrapper" title="删除图片">
                         <svg ref="remove" t="1613716053267" class="remove-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2135" width="200" height="200"><path d="M192 1024 832 1024 896 320 128 320zM640 128 640 0 384 0l0 128L64 128l0 192 64-64 768 0 64 64L960 128 640 128zM576 128l-128 0L448 64l128 0L576 128z" p-id="2136" fill="#2c2c2c"></path></svg>
                     </span>
@@ -34,6 +64,7 @@
 import { ref,onMounted, Ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import Export from './export.vue';
+import { getStyle } from "../util/index";
 
 function upload(){
 	const input = ref(null);
@@ -114,7 +145,17 @@ export default {
 	components:{
 		Export
 	},
-	setup(){
+    props:{
+    	width:{
+            type:String,
+            required:false
+        },
+        height:{
+            type:String,
+            required:false
+        }
+    },
+	setup(props){
 		const {input,img,showImg} = upload();
 		const remove = removeImg(showImg);
 		const {
@@ -124,6 +165,11 @@ export default {
 			left
 		} = resolveTextLost();
 
+        const style = getStyle(props,{
+            width: '20vw',
+            height: '20vw'
+        });
+
 		return {
 			input,
 			img,
@@ -132,7 +178,8 @@ export default {
 			leftText,
 			midText,
 			rightText,
-			left
+			left,
+            style
 		}
 	}
 }
@@ -242,8 +289,9 @@ export default {
 
                         .remove-wrapper{
                             display: block;
-                            height: 2.5vw;
-                            width: 2.5vw;
+                            height: 100%;
+                            // height: 2.5vw;
+                            // width: 2.5vw;
                 
                         .remove-icon{
                             display: block;
@@ -252,21 +300,22 @@ export default {
                         }
 
                         &:hover{
-                            width: 3vw;
-                            height: 3vw;
-                            
+                            // width: 3vw;
+                            // height: 3vw;
+                            height: 120%;
                         }
                     }
 
                 .export{
                      display: block;
-                    height: 2.5vw;
-                    width: 2.5vw;
+                    // height: 2.5vw;
+                    // width: 2.5vw;
+                    height: 100%;
 
                         &:hover{
-                            width: 3vw;
-                            height: 3vw;
-                           
+                            // width: 3vw;
+                            // height: 3vw;
+                            height: 120%;
                         }
                     }
                 }

@@ -1,5 +1,11 @@
 <template>
-    <section class="introduce-wrapper" @click="setClick" ref="wrapper">
+    <section class="introduce-wrapper" @click="setClick" ref="wrapper"
+		:style="{
+			width: style.width.num+style.width.unit,
+			height: style.height.num+style.height.unit,
+			marginLeft: -style.width.num/2+style.width.unit,
+			marginTop: -style.height.num/2+style.height.unit
+	}">
         <header class="title">
             操作介绍
         </header>
@@ -15,6 +21,7 @@
 <script lang="ts">
 import { ref, onMounted } from 'vue';
 import key from '../assets/key.mp3';
+import { getStyle } from '../util/index';
 
 function continueOp(op:()=>void){
 	const click = ref(false);
@@ -32,10 +39,12 @@ function continueOp(op:()=>void){
 
 function show(){
 	const allData = 
-        `点击右侧图标即可上传图片,`+
-        `将鼠标移动到图片上会出现删除和下载图标，`+
+        `点击右侧(下方)图标即可上传图片,`+
+        `电脑用户：将鼠标移动到图片上会出现删除和下载图标,`+
+		`手机用户：点击图片出现删除下载图标，点击其他位置隐藏,`+
         `<em>欠</em>、<em>122</em>、<em>亿</em>三处均可重新编辑,`+
-        `为了实际的显示效果，建议不要添加过多内容`;
+        `为了实际的显示效果，建议不要添加过多内容,`+
+		`<em>如果下载失败，推荐使用火狐（firefox）浏览器、谷歌（Chrome）浏览器重试<em>`;
 	const interval = 80;
 	const curData = ref(``);
 	const len = allData.length;
@@ -56,7 +65,7 @@ function show(){
 			top:100000,
 			behavior:'smooth'
 		});
-		
+
 		setTimeout(showData.bind(null,n+2),interval);
 	}
 	return{
@@ -67,14 +76,33 @@ function show(){
 }
 
 export default {
-	setup(){
+	
+	name: 'g-itdc',
+	props:{
+    	width:{
+            type:String,
+            required:false
+        },
+        height:{
+            type:String,
+            required:false
+        }
+    },
+	setup(props){
+
+		const style = getStyle(props,{
+			width:'20vw',
+			height:'20vw'
+		});
+
 		const {curData,showData,wrapper} = show();
 		const {click,setClick} = continueOp(showData.bind(null,0));
 		return{
 			curData,
 			click,
 			setClick,
-			wrapper
+			wrapper,
+			style
 		}
 	}
 }
@@ -99,7 +127,7 @@ export default {
 		overflow: auto;
 
         .title{
-            font-size: 2vw;
+            font-size: 40px;
             margin-bottom: 1vw;
         }
 

@@ -5,7 +5,7 @@
   <main class="main">
     <section class="op">
       <article class="itdc-wrapper">
-        <Itdc />
+        <Itdc/>
       </article>
       <article class="upload-wrapper">
         <Upload />
@@ -57,8 +57,8 @@ body{
   color: #2c3e50;
   width: 100vw;
   height: 100vh;
-  min-width: 740px;
-  min-height: 300px;
+  // min-width: 740px;
+  // min-height: 300px;
   // max-width: 1600px;
 }
 
